@@ -132,7 +132,9 @@ var getDefaults = function (data, callback) {
         'Utility'
       ],
 
-      mimeType: []
+      mimeType: [],
+
+      custom: null
     }
 
     callback(err, defaults)
@@ -328,14 +330,19 @@ var createMacros = function (options, dir, callback) {
 var createContents = function (options, dir, callback) {
   options.logger('Creating contents of package')
 
-  async.parallel([
+  let functions = [
     async.apply(createSpec, options, dir),
     async.apply(createBinary, options, dir),
     async.apply(createDesktop, options, dir),
     async.apply(createIcon, options, dir),
     async.apply(createCopyright, options, dir),
     async.apply(createApplication, options, dir)
-  ], function (err) {
+  ]
+  if (options.custom) {
+    functions.push(async.apply(options.custom, options, dir))
+  }
+
+  async.parallel(functions, function (err) {
     callback(err, dir)
   })
 }
