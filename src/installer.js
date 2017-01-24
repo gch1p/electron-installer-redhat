@@ -133,7 +133,6 @@ var getDefaults = function (data, callback) {
       ],
 
       mimeType: [],
-
       custom: null
     }
 
@@ -342,7 +341,7 @@ var createContents = function (options, dir, callback) {
     functions.push(async.apply(options.custom, options, dir))
   }
 
-  async.parallel(functions, function (err) {
+  async.series(functions, function (err) {
     callback(err, dir)
   })
 }

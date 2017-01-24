@@ -16,9 +16,12 @@ AutoReqProv: no
 
 %install
 mkdir -p %{buildroot}/usr/
+mkdir -p %{buildroot}/etc/
 <% if (process.platform != 'darwin') { %>cp -r usr/* %{buildroot}/usr/<% } else { %>cp -R usr/* %{buildroot}/usr/<% } %>
+<% if (process.platform != 'darwin') { %>cp -r etc/* %{buildroot}/etc/<% } else { %>cp -R etc/* %{buildroot}/etc/<% } %>
 
 %files
+/etc/
 /usr/bin/<%= name %>
 /usr/share/<%= name %>/
 /usr/share/applications/<%= name %>.desktop
