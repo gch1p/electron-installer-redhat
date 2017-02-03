@@ -3,7 +3,7 @@
 <% } %><% if (description) { %>Comment=<%= description %>
 <% } %><% if (genericName) { %>GenericName=<%= genericName %>
 <% } %><% if (name) { %>Exec=<%= name %> %U<% if (execArguments && execArguments.length) { %> <%= execArguments.join(' ') %><% } %>
-<% } %><% if (name) { %>Icon=<%= name %>
+<% } %><% if (name) { %>Icon=<%= desktop_icon_path ? desktop_icon_path : name %>
 <% } %>Type=Application
 StartupNotify=true
 <% if (categories && categories.length) { %>Categories=<%= categories.join(';') %>;
