@@ -6,6 +6,9 @@
 <% } %><% if (license) { %>License: <%= license %>
 <% } %><% if (group) { %>Group: <%= group %>
 <% } %>
+Requires: libappindicator
+Requires: libgnome-keyring
+Requires: libXScrnSaver
 AutoReqProv: no
 <% if (requires) { %>Requires: <%= requires.join(', ') %>
 <% } %><% if (productDescription) { %>
